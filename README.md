@@ -16,3 +16,8 @@ The template can run out of the box using
 ```
 cargo run -- --config ./config.yml.example debug
 ```
+
+## FAQ
+
+* _Where is the daemonization logic?_ There isn't any; your system's process
+  manager should be able to handle this for you.

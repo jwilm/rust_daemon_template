@@ -1,0 +1,13 @@
+# vim: ft=systemd
+[Unit]
+Description=Rust Daemon Template
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/rust_daemon_template debug
+User=deploy
+Group=deploy
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
