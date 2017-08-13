@@ -1,0 +1,12 @@
+[package]
+name = "rust_daemon_template"
+version = "0.0.1"
+authors = ["Joe Wilm <joe@jwilm.com>"]
+license = "Unlicense"
+
+[dependencies]
+clap = "2"
+serde = "1"
+serde_derive = "1"
+serde_yaml = "0.7"
+log = "0.3"
