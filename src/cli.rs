@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use clap::{Arg, App, SubCommand, AppSettings};
+use clap::{Arg, App};
 use log;
 
 #[derive(Debug)]
@@ -10,23 +10,12 @@ pub struct Options {
 
     /// The max level of logging
     pub max_log_level: log::LogLevelFilter,
-
-    /// Command to run.
-    pub command: Command,
-}
-
-/// How the program should run
-#[derive(Debug)]
-pub enum Command {
-    /// Run in debug mode
-    Debug,
 }
 
 impl Options {
     pub fn load() -> Options {
         let matches = App::new("rust_daemon_template")
             .version("0.0.1")
-            .setting(AppSettings::SubcommandRequiredElseHelp)
             .author("Joe Wilm <joe@jwilm.com>")
             .about("Description of rust_daemon_template goes here")
             // -c, --config
@@ -40,8 +29,6 @@ impl Options {
                 .short("v")
                 .multiple(true)
                 .help("Increases verbosity; may be specified up to three times"))
-            .subcommand(SubCommand::with_name("debug")
-                .about("debug run"))
             .get_matches();
 
         // Gets a value for config if supplied by user, or provides default.
@@ -55,17 +42,9 @@ impl Options {
             _ => log::LogLevelFilter::Trace
         };
 
-        let command = match matches.subcommand() {
-            ("debug", Some(_debug_matches)) => {
-                Command::Debug
-            },
-            _ => unreachable!(), // Using SubcommandRequiredElseHelp
-        };
-
         Options {
             config_path: config_path,
             max_log_level: level,
-            command: command
         }
     }
 }
