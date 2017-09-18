@@ -5,6 +5,8 @@ authors = ["Joe Wilm <joe@jwilm.com>"]
 license = "Unlicense"
 
 [dependencies]
+chan = "0.1"
+chan-signal = "0.3"
 clap = "2"
 serde = "1"
 serde_derive = "1"
